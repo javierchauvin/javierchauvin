@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:javierchauvin/api/file_address_api.dart';
 import 'package:javierchauvin/utils/urlLauncherService.dart';
 import 'package:javierchauvin/view/design/colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -134,8 +133,10 @@ class IsPageState extends State<IsPage>{
                           ),
 
                           GestureDetector(
-                            onTap: ()async{
-                              //_openCV(await FileAddressApi.getFileAddress(FileAddressApi.FA_CV));
+                            onTap: (){
+                              _openCV("https://firebasestorage.googleapis.com/v0/b/"
+                                  "javierchauvin-camo.appspot.com/o/personal_files%2FJavierChauvin_EN_CV.pdf?"
+                                  "alt=media&token=7258996f-8524-4c22-877b-d96d43ea235d");
                             },
                             child: Container(
                               decoration: BoxDecoration(
