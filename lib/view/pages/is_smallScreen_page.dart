@@ -180,7 +180,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
         width: cardWidth,
         height: (2.0/3.5)*cardWidth,
         decoration: BoxDecoration(
-            color: JColors.card,
+            color: JColors.name,
             boxShadow: [
               BoxShadow(
                 offset: Offset(10,10),
@@ -205,7 +205,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                     'Javier Chauvin',
                     textAlign: TextAlign.start,
                     style: GoogleFonts.notoSans(
-                      color: JColors.name,
+                      color: JColors.card,
                       fontSize: 40,
                     ),
                   ),
@@ -256,7 +256,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
               Row(
                 children: [
                   Expanded(child: Container()),
-                  _contact(JColors.name),
+                  _contact(JColors.card),
                 ],
               ),
             ],
@@ -322,6 +322,16 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                         children: [
                           SizedBox(height: 30,),
 
+                          Expanded(
+                            child: Opacity(
+                              opacity: 0.25,
+                              child: Icon(
+                                FontAwesomeIcons.solidArrowAltCircleDown,
+                                color: JColors.communicationLight,
+                              ),
+                            ),
+                          ),
+
                           Row(
                               children: [
                                 Expanded(child: Container()),
@@ -376,15 +386,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                               ]
                           ),
 
-                          Expanded(
-                            child: Opacity(
-                              opacity: 0.3,
-                              child: Icon(
-                                FontAwesomeIcons.solidArrowAltCircleDown,
-                                color: JColors.name,
-                              ),
-                            ),
-                          ),
+                          SizedBox(height: 30,),
 
                         ],
                       ),

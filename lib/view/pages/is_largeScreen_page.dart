@@ -53,7 +53,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
         width: cardWidth,
         height: (2.0/3.5)*cardWidth,
         decoration: BoxDecoration(
-            color: JColors.name,
+            color: JColors.secondBlue,
             boxShadow: [
               BoxShadow(
                 offset: Offset(10,10),
@@ -122,7 +122,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
       width: cardWidth,
       height: (2.0/3.5)*cardWidth,
       decoration: BoxDecoration(
-          color: Color.fromARGB(255, 238, 238, 238),
+          color: JColors.name,
           boxShadow: [
             BoxShadow(
               offset: Offset(10,10),
@@ -145,15 +145,18 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
               'Javier Chauvin',
               textAlign: TextAlign.start,
               style: GoogleFonts.notoSans(
-                color: JColors.name,
-                fontSize: 40,
+                color: JColors.card,
+                fontSize: 50,
               ),
             ),
+            Expanded(child: Container()),
             Text(
-              'Tech enthusiast - PM/PO - Lifelong learner',
+              'Tech enthusiast \n'
+                  'Product Owner\n'
+                  'Lifelong learner',
               style: GoogleFonts.robotoMono(
-                  color: Colors.black45,
-                  fontSize: 16
+                  color: Colors.white54,
+                  fontSize: 20
               ),
             ),
             Expanded(child: Container()),
@@ -177,7 +180,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
                   },
                   child: Icon(
                     FontAwesomeIcons.phone,
-                    color: JColors.name,
+                    color: JColors.card,
                   ),
                 ),
                 SizedBox(width: 20,),
@@ -187,7 +190,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
                   },
                   child: Icon(
                     FontAwesomeIcons.github,
-                    color: JColors.name,
+                    color: JColors.card,
                   ),
                 ),
                 SizedBox(width: 20,),
@@ -197,7 +200,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
                   },
                   child: Icon(
                     FontAwesomeIcons.linkedin,
-                    color: JColors.name,
+                    color: JColors.card,
                   ),
                 ),
                 SizedBox(width: 30,),
@@ -206,7 +209,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
                   child: Text(
                     'Download my',
                     style: GoogleFonts.robotoMono(
-                        color: Colors.black38,
+                        color: Colors.white54,
                         fontSize: 16
                     ),
                   ),
@@ -221,7 +224,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: JColors.name,
+                      color: JColors.card,
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
@@ -231,7 +234,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
                           Text(
                             'resume',
                             style: GoogleFonts.robotoMono(
-                                color: Color.fromARGB(255, 238, 238, 238),
+                                color: JColors.name,
                                 fontSize: 16
                             ),
                           ),
@@ -240,7 +243,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
                           ),
                           Icon(
                             Icons.download_rounded,
-                            color: Color.fromARGB(255, 238, 238, 238),
+                            color: JColors.name,
                             size: 16,
                           ),
                         ],
@@ -309,26 +312,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
                   ]
               ),
             ),
-          Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Text(
-              'Under Construction',
-              style: GoogleFonts.dancingScript(
-                  color: Colors.black26,
-                  fontSize: 30
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Text(
-              'Under Construction',
-              style: GoogleFonts.dancingScript(
-                  color: Colors.black26,
-                  fontSize: 30
-              ),
-            ),
-          ),
+
         ]
       ),
     );
