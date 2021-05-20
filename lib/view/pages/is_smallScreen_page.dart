@@ -42,17 +42,25 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
           });
   }
 
-  static Widget cardBack(){
+  static Widget cardBack(double screenWidth){
+
+    double cardWidth;
+    if( screenWidth < 355 ){
+      cardWidth = 335;
+    } else {
+      cardWidth = screenWidth - 40;
+    }
+
     return Transform(
       alignment: FractionalOffset.center,
       transform: Matrix4.identity()
         ..setEntry(3, 2, 0.002)
         ..rotateX(pi * 1),
       child: Container(
-        height: 2.0*95,
-        width: 3.5*95,
+        width: cardWidth,
+        height: (2.0/3.5)*cardWidth,
         decoration: BoxDecoration(
-            color: JColors.Name,
+            color: JColors.name,
             boxShadow: [
               BoxShadow(
                 offset: Offset(10,10),
@@ -73,7 +81,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
               Text(
                 ' Clients needs to tech tools',
                 style: GoogleFonts.caveat (
-                    color: JColors.Card,
+                    color: JColors.card,
                     fontSize: 30
                 ),
                 textAlign: TextAlign.start,
@@ -81,7 +89,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
               Text(
                 ' 2 StartUps',
                 style: GoogleFonts.caveat (
-                    color: JColors.Card,
+                    color: JColors.card,
                     fontSize: 30
                 ),
                 textAlign: TextAlign.start,
@@ -89,7 +97,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
               Text(
                 ' MS from CMU ',
                 style: GoogleFonts.caveat (
-                    color: JColors.Card,
+                    color: JColors.card,
                     fontSize: 30
                 ),
                 textAlign: TextAlign.start,
@@ -97,7 +105,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
               Text(
                 ' OKRs, Design Thinking, Scrum',
                 style: GoogleFonts.caveat (
-                    color: JColors.Card,
+                    color: JColors.card,
                     fontSize: 20
                 ),
                 textAlign: TextAlign.start,
@@ -109,10 +117,18 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
     );
   }
 
-  static Widget cardFront(){
+  static Widget cardFront(double screenWidth){
+
+    double cardWidth;
+    if( screenWidth < 355 ){
+      cardWidth = 335;
+    } else {
+      cardWidth = screenWidth - 40;
+    }
+
     return Container(
-      height: 2.0*95,
-      width: 3.5*95,
+      width: cardWidth,
+      height: (2.0/3.5)*cardWidth,
       decoration: BoxDecoration(
           color: Color.fromARGB(255, 238, 238, 238),
           boxShadow: [
@@ -137,7 +153,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
               'Javier Chauvin',
               textAlign: TextAlign.start,
               style: GoogleFonts.notoSans(
-                color: JColors.Name,
+                color: JColors.name,
                 fontSize: 40,
               ),
             ),
@@ -176,7 +192,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                   },
                   child: Icon(
                     Icons.email,
-                    color: JColors.Name,
+                    color: JColors.name,
                   ),
                 ),
                 SizedBox(width: 20,),
@@ -186,7 +202,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                   },
                   child: Icon(
                     FontAwesomeIcons.phone,
-                    color: JColors.Name,
+                    color: JColors.name,
                   ),
                 ),
                 SizedBox(width: 20,),
@@ -196,7 +212,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                   },
                   child: Icon(
                     FontAwesomeIcons.github,
-                    color: JColors.Name,
+                    color: JColors.name,
                   ),
                 ),
                 SizedBox(width: 20,),
@@ -206,7 +222,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                   },
                   child: Icon(
                     FontAwesomeIcons.linkedin,
-                    color: JColors.Name,
+                    color: JColors.name,
                   ),
                 ),
 
@@ -221,107 +237,130 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children:<Widget> [
 
-            SizedBox(height: 30,),
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
 
-            Row(
-              children: [
-                Expanded(child: Container()),
-                Transform(
-                  alignment: FractionalOffset.center,
-                  transform: Matrix4.identity()
-                    ..setEntry(3, 2, 0.002)
-                    ..rotateX(pi * _flipCardAnimation.value),
-                  child: GestureDetector(
-                    onTap: (){
-                      if( AnimationStatus.dismissed == _flipCardAnimationStatus){
-                        _flipCardAnimationController.forward();
-                      } else {
-                        _flipCardAnimationController.reverse();
-                      }
-                    },
-                    child: _flipCardAnimation.value >= 0.5 ?
-                    cardBack() : cardFront(),
-                    //child: CircularProgressIndicator(),
-                  ),
-                ),
-                Expanded(child: Container()),
-              ],
-            ),
+    return ListView(
+      children: <Widget>[
+        Container(
+          height: screenHeight,
+          width: screenWidth,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children:<Widget> [
 
-            SizedBox(height: 30,),
+              Flexible(
+                flex: 1,
+                child: Container(),
+              ),
 
-            Row(
-              children: [
-                Expanded(child: Container()),
-                Padding(
-                  padding: const EdgeInsets.only(right: 5),
-                  child: Text(
-                    'Download my',
-                    style: GoogleFonts.robotoMono(
-                        color: Colors.black45,
-                        fontSize: 16
+              Flexible(
+                flex: 1,
+                child: Row(
+                  children: [
+                    Expanded(child: Container()),
+                    Transform(
+                      alignment: FractionalOffset.center,
+                      transform: Matrix4.identity()
+                        ..setEntry(3, 2, 0.002)
+                        ..rotateX(pi * _flipCardAnimation.value),
+                      child: GestureDetector(
+                        onTap: (){
+                          if( AnimationStatus.dismissed == _flipCardAnimationStatus){
+                            _flipCardAnimationController.forward();
+                          } else {
+                            _flipCardAnimationController.reverse();
+                          }
+                        },
+                        child: _flipCardAnimation.value >= 0.5 ?
+                        cardBack(screenWidth) : cardFront(screenWidth),
+                        //child: CircularProgressIndicator(),
+                      ),
                     ),
-                  ),
+                    Expanded(child: Container()),
+                  ],
                 ),
+              ),
 
-                GestureDetector(
-                  onTap: (){
-                    IsPage.openCV("https://firebasestorage.googleapis.com/v0/b/"
-                        "javierchauvin-camo.appspot.com/o/personal_files%2FJavierChauvin_EN_CV.pdf?"
-                        "alt=media&token=7258996f-8524-4c22-877b-d96d43ea235d");
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: JColors.Name,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'resume',
+              Flexible(
+                flex: 2,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 30,),
+
+                    Row(
+                      children: [
+                        Expanded(child: Container()),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5),
+                          child: Text(
+                            'Download my',
                             style: GoogleFonts.robotoMono(
-                                color: Color.fromARGB(255, 238, 238, 238),
+                                color: Colors.black45,
                                 fontSize: 16
                             ),
                           ),
-                          SizedBox(
-                            width: 5,
+                        ),
+
+                        GestureDetector(
+                          onTap: (){
+                            IsPage.openCV("https://firebasestorage.googleapis.com/v0/b/"
+                                "javierchauvin-camo.appspot.com/o/personal_files%2FJavierChauvin_EN_CV.pdf?"
+                                "alt=media&token=7258996f-8524-4c22-877b-d96d43ea235d");
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: JColors.name,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'resume',
+                                    style: GoogleFonts.robotoMono(
+                                        color: Color.fromARGB(255, 238, 238, 238),
+                                        fontSize: 16
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Icon(
+                                    Icons.download_rounded,
+                                    color: Color.fromARGB(255, 238, 238, 238),
+                                    size: 16,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                          Icon(
-                            Icons.download_rounded,
-                            color: Color.fromARGB(255, 238, 238, 238),
-                            size: 16,
-                          ),
-                        ],
+                        ),
+                        Expanded(child: Container()),
+                      ]
+                    ),
+                    
+                    Expanded(
+                      child: Opacity(
+                        opacity: 0.3,
+                        child: Icon(
+                          FontAwesomeIcons.solidArrowAltCircleDown,
+                          color: JColors.name,
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                Expanded(child: Container()),
-              ],
-            ),
 
-            SizedBox(height: 20,),
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: Text(
-                'Under Construction',
-                style: GoogleFonts.dancingScript(
-                    color: Colors.black26,
-                    fontSize: 30
+                  ],
                 ),
               ),
-            ),
-          ]
-      ),
+            ]
+          ),
+        ),
+      ]
     );
   }
 }

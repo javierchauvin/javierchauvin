@@ -2,6 +2,7 @@
 
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:javierchauvin/utils/urlLauncherService.dart';
@@ -42,16 +43,17 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
   }
 
   Widget cardBack(){
+    double cardWidth = 500;
     return Transform(
       alignment: FractionalOffset.center,
       transform: Matrix4.identity()
         ..setEntry(3, 2, 0.002)
         ..rotateX(pi * 1),
       child: Container(
-        height: 2.0*130,
-        width: 3.5*130,
+        width: cardWidth,
+        height: (2.0/3.5)*cardWidth,
         decoration: BoxDecoration(
-            color: JColors.Name,
+            color: JColors.name,
             boxShadow: [
               BoxShadow(
                 offset: Offset(10,10),
@@ -73,7 +75,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
               Text(
                 ' Clients needs to tech tools',
                 style: GoogleFonts.caveat (
-                    color: JColors.Card,
+                    color: JColors.card,
                     fontSize: 30
                 ),
                 textAlign: TextAlign.start,
@@ -82,7 +84,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
               Text(
                 ' 2 StartUps',
                 style: GoogleFonts.caveat (
-                    color: JColors.Card,
+                    color: JColors.card,
                     fontSize: 30
                 ),
                 textAlign: TextAlign.start,
@@ -91,7 +93,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
               Text(
                 ' MS from CMU ',
                 style: GoogleFonts.caveat (
-                    color: JColors.Card,
+                    color: JColors.card,
                     fontSize: 30
                 ),
                 textAlign: TextAlign.start,
@@ -100,7 +102,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
               Text(
                 ' OKRs, Design Thinking, Scrum',
                 style: GoogleFonts.caveat (
-                    color: JColors.Card,
+                    color: JColors.card,
                     fontSize: 30
                 ),
                 textAlign: TextAlign.start,
@@ -113,9 +115,12 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
   }
 
   Widget cardFront(){
+
+    double cardWidth = 500;
+
     return Container(
-      height: 2.0*130,
-      width: 3.5*130,
+      width: cardWidth,
+      height: (2.0/3.5)*cardWidth,
       decoration: BoxDecoration(
           color: Color.fromARGB(255, 238, 238, 238),
           boxShadow: [
@@ -140,7 +145,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
               'Javier Chauvin',
               textAlign: TextAlign.start,
               style: GoogleFonts.notoSans(
-                color: JColors.Name,
+                color: JColors.name,
                 fontSize: 40,
               ),
             ),
@@ -162,7 +167,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
                   },
                   child: Icon(
                     Icons.email,
-                    color: JColors.Name,
+                    color: JColors.name,
                   ),
                 ),
                 SizedBox(width: 20,),
@@ -172,7 +177,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
                   },
                   child: Icon(
                     FontAwesomeIcons.phone,
-                    color: JColors.Name,
+                    color: JColors.name,
                   ),
                 ),
                 SizedBox(width: 20,),
@@ -182,7 +187,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
                   },
                   child: Icon(
                     FontAwesomeIcons.github,
-                    color: JColors.Name,
+                    color: JColors.name,
                   ),
                 ),
                 SizedBox(width: 20,),
@@ -192,7 +197,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
                   },
                   child: Icon(
                     FontAwesomeIcons.linkedin,
-                    color: JColors.Name,
+                    color: JColors.name,
                   ),
                 ),
                 SizedBox(width: 30,),
@@ -216,7 +221,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: JColors.Name,
+                      color: JColors.name,
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
@@ -253,50 +258,78 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children:<Widget> [
-
-              SizedBox(height: 30,),
-
-              Row(
-                children: [
-                  Expanded(child: Container()),
-                  Transform(
-                    alignment: FractionalOffset.center,
-                    transform: Matrix4.identity()
-                      ..setEntry(3, 2, 0.002)
-                      ..rotateX(pi * _flipCardAnimation.value),
-                    child: GestureDetector(
-                      onTap: (){
-                        if( AnimationStatus.dismissed == _flipCardAnimationStatus){
-                          _flipCardAnimationController.forward();
-                        } else {
-                          _flipCardAnimationController.reverse();
-                        }
-                      },
-                      child: _flipCardAnimation.value >= 0.5 ?
-                      cardBack() : cardFront(),
+      body: ListView(
+        children: <Widget>[
+          Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children:<Widget> [
+                    Expanded(child: Container()),
+                    Transform(
+                      alignment: FractionalOffset.center,
+                      transform: Matrix4.identity()
+                        ..setEntry(3, 2, 0.002)
+                        ..rotateX(pi * _flipCardAnimation.value),
+                      child: GestureDetector(
+                        onTap: (){
+                          if( AnimationStatus.dismissed == _flipCardAnimationStatus){
+                            _flipCardAnimationController.forward();
+                          } else {
+                            _flipCardAnimationController.reverse();
+                          }
+                        },
+                        child: _flipCardAnimation.value >= 0.5 ?
+                        cardBack() : cardFront(),
+                      ),
                     ),
-                  ),
-                  Expanded(child: Container()),
-                ],
+                    SizedBox(height: 20,),
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Text(
+                        'Under Construction',
+                        style: GoogleFonts.dancingScript(
+                            color: Colors.black12,
+                            fontSize: 30
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                        child: Opacity(
+                          opacity: 0.3,
+                          child: Icon(
+                              FontAwesomeIcons.solidArrowAltCircleDown,
+                              color: JColors.name,
+                          ),
+                        )
+                    ),
+                  ]
               ),
-              SizedBox(height: 20,),
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: Text(
-                  'Under Construction',
-                  style: GoogleFonts.dancingScript(
-                      color: Colors.black26,
-                      fontSize: 30
-                  ),
-                ),
+            ),
+          Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Text(
+              'Under Construction',
+              style: GoogleFonts.dancingScript(
+                  color: Colors.black26,
+                  fontSize: 30
               ),
-            ]
-        ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Text(
+              'Under Construction',
+              style: GoogleFonts.dancingScript(
+                  color: Colors.black26,
+                  fontSize: 30
+              ),
+            ),
+          ),
+        ]
       ),
     );
   }

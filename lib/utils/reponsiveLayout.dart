@@ -39,16 +39,16 @@ class ResponsiveLayout extends StatelessWidget {
     switch(screenSize){
 
       case ScreenSize.SS_LARGE:
-        horizontal = 30.0;
-        vertical = 30.0;
+        horizontal = 0;
+        vertical = 0;
         break;
       case ScreenSize.SS_MEDIUM:
-        horizontal = 10.0;
-        vertical = 10.0;
+        horizontal = 0;
+        vertical = 0;
         break;
       case ScreenSize.SS_SMALL:
-        horizontal = 10.0;
-        vertical = 10.0;
+        horizontal = 0;
+        vertical = 0;
         break;
     }
 
