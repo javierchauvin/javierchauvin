@@ -109,7 +109,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
           width: cardWidth,
           height: (2.0/3.5)*cardWidth,
           decoration: BoxDecoration(
-              color: JColors.card,
+              color: JColors.secondBlue,
               boxShadow: [
                 BoxShadow(
                   offset: Offset(10,10),
@@ -130,7 +130,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                 Text(
                   ' Clients\' needs 2 tech tools',
                   style: GoogleFonts.caveat (
-                      color: JColors.secondBlue,
+                      color: JColors.card,
                       fontSize: 30
                   ),
                   textAlign: TextAlign.start,
@@ -138,7 +138,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                 Text(
                   ' 2 StartUps',
                   style: GoogleFonts.caveat (
-                      color: JColors.secondBlue,
+                      color: JColors.card,
                       fontSize: 30
                   ),
                   textAlign: TextAlign.start,
@@ -146,7 +146,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                 Text(
                   ' MS from CMU ',
                   style: GoogleFonts.caveat (
-                      color: JColors.secondBlue,
+                      color: JColors.card,
                       fontSize: 30
                   ),
                   textAlign: TextAlign.start,
@@ -155,7 +155,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                 Text(
                   ' OKRs, Design Thinking, Scrum',
                   style: GoogleFonts.caveat (
-                      color: JColors.secondBlue,
+                      color: JColors.card,
                       fontSize: 20
                   ),
                   textAlign: TextAlign.start,
@@ -180,7 +180,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
         width: cardWidth,
         height: (2.0/3.5)*cardWidth,
         decoration: BoxDecoration(
-            color: JColors.name,
+            color: JColors.card,
             boxShadow: [
               BoxShadow(
                 offset: Offset(10,10),
@@ -205,7 +205,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                     'Javier Chauvin',
                     textAlign: TextAlign.start,
                     style: GoogleFonts.notoSans(
-                      color: JColors.card,
+                      color: JColors.name,
                       fontSize: 40,
                     ),
                   ),
@@ -217,7 +217,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                   Text(
                     'Tech enthusiast',
                     style: GoogleFonts.robotoMono(
-                        color: JColors.thirdBlue,
+                        color: JColors.secondBlue,
                         fontSize: 16
                     ),
                     textAlign: TextAlign.right,
@@ -231,7 +231,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                   Text(
                     'Product Owner',
                     style: GoogleFonts.robotoMono(
-                        color: JColors.thirdBlue,
+                        color: JColors.secondBlue,
                         fontSize: 16
                     ),
                     textAlign: TextAlign.right,
@@ -245,7 +245,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                   Text(
                     'Lifelong learner',
                     style: GoogleFonts.robotoMono(
-                        color: JColors.thirdBlue,
+                        color: JColors.secondBlue,
                         fontSize: 16
                     ),
                     textAlign: TextAlign.center,
@@ -256,7 +256,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
               Row(
                 children: [
                   Expanded(child: Container()),
-                  _contact(JColors.card),
+                  _contact(JColors.name),
                 ],
               ),
             ],
@@ -275,6 +275,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
 
           children: <Widget>[
             Container(
+              //color: JColors.secondBlue,
               height: screenHeight,
               width: screenWidth,
               child: Column(
@@ -344,7 +345,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
-                                      color: JColors.name,
+                                      color: JColors.secondBlue,
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
@@ -394,135 +395,61 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
 
             cardWithShadows(
               text: [
-                new TextSpan(text: 'Translate '),
-                new TextSpan(text: 'clients\' needs into tech tools.',
-                  style: GoogleFonts.robotoMono (
-                      color: JColors.name,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
+                _normalText('Translate '),
+                _coolText('clients\' needs into tech tools.'),
               ],
             ),
 
             cardWithShadows(
               text: [
-                new TextSpan(text: 'I develop my projects starting with '),
-                new TextSpan(text: 'design thinking',
-                  style: GoogleFonts.robotoMono (
-                      color: JColors.name,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                new TextSpan(text:  ' to understand what the client needs. Then, '),
-                new TextSpan(text: 'OKRs',
-                  style: GoogleFonts.robotoMono (
-                      color: JColors.name,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                new TextSpan(text:  ' to set goals and a way to measure them. '
-                    'For the development: '
-                ),
-                new TextSpan(text: 'short iterations',
-                  style: GoogleFonts.robotoMono (
-                      color: JColors.name,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                new TextSpan(text: ' to tryprototypes in an agile ambient of a mix of '
-                ),
-                new TextSpan(text: 'Scrum and Kanban.',
-                  style: GoogleFonts.robotoMono (
-                      color: JColors.name,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-
+                _normalText('I develop my projects starting with '),
+                _coolText('design thinking '),
+                _normalText('to understand what the client needs. Then, '),
+                _coolText('OKRs '),
+                _normalText('to set goals and a way to measure them. '
+                    'For the development: '),
+                _coolText('short iterations '),
+                _normalText('to tryprototypes in an agile ambient of a mix of '),
+                _coolText('Scrum and Kanban.'),
               ],
             ),
 
             cardWithShadows(
               text: [
-                new TextSpan(text: 'I have lived and worked in '),
-                new TextSpan(text: 'Ecuador, Israel, and USA. ',
-                  style: GoogleFonts.robotoMono (
-                      color: JColors.name,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                new TextSpan(text: 'For this reason, I have worked with '),
-                new TextSpan(text: 'multidisciplinary and multicultural teams ',
-                  style: GoogleFonts.robotoMono (
-                      color: JColors.name,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                new TextSpan(text: 'in situ and remotely in different time zones.'),
+                _normalText('I have lived and worked in '),
+                _coolText('Ecuador, Israel, and USA. '),
+                _normalText('For this reason, I have worked with '),
+                _coolText('multidisciplinary and multicultural teams '),
+                _normalText('in situ and remotely in different time zones.'),
               ],
             ),
 
             cardWithShadows(
               text: [
-                new TextSpan(text: 'I have founded '),
-                new TextSpan(text: '2 startUps.',
-                  style: GoogleFonts.robotoMono (
-                      color: JColors.name,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
+                _normalText('I have founded '),
+                _coolText('2 startUps.'),
               ],
             ),
 
             cardWithShadows(
               text: [
-                new TextSpan(text: 'MS ',
-                  style: GoogleFonts.robotoMono (
-                      color: JColors.name,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                new TextSpan(text: 'from '),
-                new TextSpan(text: 'Carnegie Mellon University ',
-                  style: GoogleFonts.robotoMono (
-                      color: JColors.name,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                new TextSpan(text: 'and a BS from ESPE'),
+                _coolText('MS '),
+                _normalText('from '),
+                _coolText('Carnegie Mellon University '),
+                _normalText('and a BS from ESPE'),
               ],
             ),
 
             cardWithShadows(
               text: [
-                new TextSpan(text: 'My career has been developed in order to expose myself to '
+
+                _normalText('My career has been developed in order to expose myself to '
                     'as many technologies as possible; but, taking into account one '
                     'main goal: '),
-                new TextSpan(text: 'problem-solving. ',
-                  style: GoogleFonts.robotoMono (
-                      color: JColors.name,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                new TextSpan(text: 'I have worked starting from '),
-                new TextSpan(text: 'hardware design, going through instrumentation, '
-                    'embedded systems, AI/ML,  AR, and now Mobile and web applications.',
-                  style: GoogleFonts.robotoMono (
-                      color: JColors.name,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
+                _coolText('problem-solving. '),
+                _normalText('I have worked starting from '),
+                _coolText('hardware design, going through instrumentation, '
+                    'embedded systems, AI/ML,  AR, and now Mobile and web applications.'),
               ],
             ),
 
@@ -553,5 +480,17 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
 
           ]
       );
+  }
+  TextSpan _coolText(String text){
+    return TextSpan(text: text,
+      style: GoogleFonts.caveat(
+          color: JColors.secondBlue,
+          fontSize: 30,
+      ),
+    );
+  }
+
+  TextSpan _normalText(String text){
+    return TextSpan(text: text);
   }
 }
