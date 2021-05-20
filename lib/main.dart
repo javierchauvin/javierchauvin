@@ -12,7 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Javier Chauvin',
-      darkTheme: JTheme.darkTheme,
+      //darkTheme: JTheme.darkTheme,
+      //theme: JTheme.light,
       themeMode: ThemeMode.light,
       home: IsPage(),
     );

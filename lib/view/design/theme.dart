@@ -6,7 +6,7 @@ class JTheme {
   //
   JTheme._();
 
-//  static final ThemeData lightTheme = ThemeData(
+  static final ThemeData light = ThemeData(
 //      visualDensity: VisualDensity.adaptivePlatformDensity,
 //      scaffoldBackgroundColor: AppColors.whiteK,
 //      brightness: Brightness.light,
@@ -27,7 +27,7 @@ class JTheme {
 //      primaryColorDark: AppColors.greenD600K,
 //      accentColor: AppColors.yellowK,
 //      accentColorBrightness: Brightness.light,
-//      backgroundColor: AppColors.whiteK,
+      backgroundColor: JColors.lightOrange,
 //      buttonColor: AppColors.greenD500K,
 //      buttonTheme: ButtonThemeData(
 //          textTheme: ButtonTextTheme.normal,
@@ -51,7 +51,8 @@ class JTheme {
 //            color: AppColors.greyKDarkText,
 //            fontSize: 13,
 //            fontWeight: FontWeight.w100),
-//      ));
+//      )
+  );
 
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
