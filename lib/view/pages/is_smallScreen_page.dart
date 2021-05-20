@@ -1,21 +1,223 @@
 
+import 'dart:math';
+
+import 'package:flutter/animation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:javierchauvin/view/design/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:javierchauvin/utils/urlLauncherService.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class IsPageSmallScreen extends StatelessWidget{
+import 'package:javierchauvin/utils/urlLauncherService.dart';
+import 'package:javierchauvin/view/pages/is_page.dart';
 
-  _openCV(String videoUrl)async{
+class IsPageSmallScreen extends StatefulWidget{
 
-    if( await canLaunch(videoUrl) ){
-      await launch(videoUrl);
-    } else {
-      throw 'No se puede abrir $videoUrl';
-    }
+  IsPageSmallScreen();
+  IsPageSmallScreenState createState() => IsPageSmallScreenState();
+}
+
+class IsPageSmallScreenState extends State<IsPageSmallScreen>
+    with SingleTickerProviderStateMixin{
+
+  AnimationController _flipCardAnimationController;
+  Animation<double> _flipCardAnimation;
+  AnimationStatus _flipCardAnimationStatus = AnimationStatus.dismissed;
+
+  @override
+  void initState(){
+    super.initState();
+    _flipCardAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 300),
+    );
+
+    _flipCardAnimation = Tween<double>(end: 1, begin: 0)
+        .animate(_flipCardAnimationController)
+          ..addListener(() {
+            setState(() {});
+          })
+          ..addStatusListener((status) {
+            _flipCardAnimationStatus = status;
+          });
   }
+
+  static Widget cardBack(){
+    return Transform(
+      alignment: FractionalOffset.center,
+      transform: Matrix4.identity()
+        ..setEntry(3, 2, 0.002)
+        ..rotateX(pi * 1),
+      child: Container(
+        height: 2.0*95,
+        width: 3.5*95,
+        decoration: BoxDecoration(
+            color: JColors.Name,
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(10,10),
+                color: Color.fromARGB(80, 0, 0, 0),
+                blurRadius: 10,
+              ),
+              BoxShadow(
+                offset: Offset(-10,-10),
+                color: Color.fromARGB(150, 255, 255, 255),
+                blurRadius: 10,
+              ),
+            ]
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            children: [
+              Text(
+                ' Clients needs to tech tools',
+                style: GoogleFonts.caveat (
+                    color: JColors.Card,
+                    fontSize: 30
+                ),
+                textAlign: TextAlign.start,
+              ),
+              Text(
+                ' 2 StartUps',
+                style: GoogleFonts.caveat (
+                    color: JColors.Card,
+                    fontSize: 30
+                ),
+                textAlign: TextAlign.start,
+              ),
+              Text(
+                ' MS from CMU ',
+                style: GoogleFonts.caveat (
+                    color: JColors.Card,
+                    fontSize: 30
+                ),
+                textAlign: TextAlign.start,
+              ),
+              Text(
+                ' OKRs, Design Thinking, Scrum',
+                style: GoogleFonts.caveat (
+                    color: JColors.Card,
+                    fontSize: 20
+                ),
+                textAlign: TextAlign.start,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  static Widget cardFront(){
+    return Container(
+      height: 2.0*95,
+      width: 3.5*95,
+      decoration: BoxDecoration(
+          color: Color.fromARGB(255, 238, 238, 238),
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(10,10),
+              color: Color.fromARGB(80, 0, 0, 0),
+              blurRadius: 10,
+            ),
+            BoxShadow(
+              offset: Offset(-10,-10),
+              color: Color.fromARGB(150, 255, 255, 255),
+              blurRadius: 10,
+            ),
+          ]
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Javier Chauvin',
+              textAlign: TextAlign.start,
+              style: GoogleFonts.notoSans(
+                color: JColors.Name,
+                fontSize: 40,
+              ),
+            ),
+            Text(
+              'Tech enthusiast',
+              style: GoogleFonts.robotoMono(
+                  color: Colors.black45,
+                  fontSize: 16
+              ),
+              textAlign: TextAlign.start,
+            ),
+            Text(
+              'PM/PO',
+              style: GoogleFonts.robotoMono(
+                  color: Colors.black45,
+                  fontSize: 16
+              ),
+              textAlign: TextAlign.right,
+            ),
+            Text(
+              'Lifelong learner',
+              style: GoogleFonts.robotoMono(
+                  color: Colors.black45,
+                  fontSize: 16
+              ),
+              textAlign: TextAlign.start,
+            ),
+            Expanded(child: Container()),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(child: Container()),
+                GestureDetector(
+                  onTap: (){
+                    LauncherService().sendEmail('javier.chauvin@gmail.com');
+                  },
+                  child: Icon(
+                    Icons.email,
+                    color: JColors.Name,
+                  ),
+                ),
+                SizedBox(width: 20,),
+                GestureDetector(
+                  onTap: (){
+                    LauncherService().call('+593960530100');
+                  },
+                  child: Icon(
+                    FontAwesomeIcons.phone,
+                    color: JColors.Name,
+                  ),
+                ),
+                SizedBox(width: 20,),
+                GestureDetector(
+                  onTap: (){
+                    IsPage.openCV("https://github.com/javierchauvin");
+                  },
+                  child: Icon(
+                    FontAwesomeIcons.github,
+                    color: JColors.Name,
+                  ),
+                ),
+                SizedBox(width: 20,),
+                GestureDetector(
+                  onTap: (){
+                    IsPage.openCV("https://www.linkedin.com/in/javierchauvin/");
+                  },
+                  child: Icon(
+                    FontAwesomeIcons.linkedin,
+                    color: JColors.Name,
+                  ),
+                ),
+
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -29,107 +231,22 @@ class IsPageSmallScreen extends StatelessWidget{
             Row(
               children: [
                 Expanded(child: Container()),
-                Container(
-                  height: 2.0*100,
-                  width: 3.5*100,
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 238, 238, 238),
-                      boxShadow: [
-                        BoxShadow(
-                          offset: Offset(10,10),
-                          color: Color.fromARGB(80, 0, 0, 0),
-                          blurRadius: 10,
-                        ),
-                        BoxShadow(
-                          offset: Offset(-10,-10),
-                          color: Color.fromARGB(150, 255, 255, 255),
-                          blurRadius: 10,
-                        ),
-                      ]
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Javier Chauvin',
-                          textAlign: TextAlign.start,
-                          style: GoogleFonts.notoSans(
-                            color: JColors.Name,
-                            fontSize: 40,
-                          ),
-                        ),
-                        Text(
-                          'Tech enthusiast',
-                          style: GoogleFonts.robotoMono(
-                              color: Colors.black45,
-                              fontSize: 16
-                          ),
-                        ),
-                        Text(
-                          'PM/PO',
-                          style: GoogleFonts.robotoMono(
-                              color: Colors.black45,
-                              fontSize: 16
-                          ),
-                        ),
-                        Text(
-                          'Lifelong learner',
-                          style: GoogleFonts.robotoMono(
-                              color: Colors.black45,
-                              fontSize: 16
-                          ),
-                        ),
-                        Expanded(child: Container()),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(child: Container()),
-                            GestureDetector(
-                              onTap: (){
-                                LauncherService().sendEmail('javier.chauvin@gmail.com');
-                              },
-                              child: Icon(
-                                Icons.email,
-                                color: JColors.Name,
-                              ),
-                            ),
-                            SizedBox(width: 20,),
-                            GestureDetector(
-                              onTap: (){
-                                LauncherService().call('+593960530100');
-                              },
-                              child: Icon(
-                                FontAwesomeIcons.phone,
-                                color: JColors.Name,
-                              ),
-                            ),
-                            SizedBox(width: 20,),
-                            GestureDetector(
-                              onTap: (){
-                                _openCV("https://github.com/javierchauvin");
-                              },
-                              child: Icon(
-                                FontAwesomeIcons.github,
-                                color: JColors.Name,
-                              ),
-                            ),
-                            SizedBox(width: 20,),
-                            GestureDetector(
-                              onTap: (){
-                                _openCV("https://www.linkedin.com/in/javierchauvin/");
-                              },
-                              child: Icon(
-                                FontAwesomeIcons.linkedin,
-                                color: JColors.Name,
-                              ),
-                            ),
-
-                          ],
-                        ),
-                      ],
-                    ),
+                Transform(
+                  alignment: FractionalOffset.center,
+                  transform: Matrix4.identity()
+                    ..setEntry(3, 2, 0.002)
+                    ..rotateX(pi * _flipCardAnimation.value),
+                  child: GestureDetector(
+                    onTap: (){
+                      if( AnimationStatus.dismissed == _flipCardAnimationStatus){
+                        _flipCardAnimationController.forward();
+                      } else {
+                        _flipCardAnimationController.reverse();
+                      }
+                    },
+                    child: _flipCardAnimation.value >= 0.5 ?
+                    cardBack() : cardFront(),
+                    //child: CircularProgressIndicator(),
                   ),
                 ),
                 Expanded(child: Container()),
@@ -154,7 +271,7 @@ class IsPageSmallScreen extends StatelessWidget{
 
                 GestureDetector(
                   onTap: (){
-                    _openCV("https://firebasestorage.googleapis.com/v0/b/"
+                    IsPage.openCV("https://firebasestorage.googleapis.com/v0/b/"
                         "javierchauvin-camo.appspot.com/o/personal_files%2FJavierChauvin_EN_CV.pdf?"
                         "alt=media&token=7258996f-8524-4c22-877b-d96d43ea235d");
                   },
