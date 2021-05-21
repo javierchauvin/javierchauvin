@@ -93,12 +93,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
 
     static Widget cardBack(double screenWidth){
 
-      double cardWidth;
-      if( screenWidth < 355 ){
-        cardWidth = 335;
-      } else {
-        cardWidth = screenWidth - 40;
-      }
+      double cardWidth = 355;
 
       return Transform(
         alignment: FractionalOffset.center,
@@ -109,7 +104,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
           width: cardWidth,
           height: (2.0/3.5)*cardWidth,
           decoration: BoxDecoration(
-              color: JColors.secondBlue,
+              color: JColors.card,
               boxShadow: [
                 BoxShadow(
                   offset: Offset(10,10),
@@ -130,7 +125,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                 Text(
                   ' Clients\' needs 2 tech tools',
                   style: GoogleFonts.caveat (
-                      color: JColors.card,
+                      color: JColors.name,
                       fontSize: 30
                   ),
                   textAlign: TextAlign.start,
@@ -138,7 +133,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                 Text(
                   ' 2 StartUps',
                   style: GoogleFonts.caveat (
-                      color: JColors.card,
+                      color: JColors.name,
                       fontSize: 30
                   ),
                   textAlign: TextAlign.start,
@@ -146,7 +141,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                 Text(
                   ' MS from CMU ',
                   style: GoogleFonts.caveat (
-                      color: JColors.card,
+                      color: JColors.name,
                       fontSize: 30
                   ),
                   textAlign: TextAlign.start,
@@ -155,7 +150,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                 Text(
                   ' OKRs, Design Thinking, Scrum',
                   style: GoogleFonts.caveat (
-                      color: JColors.card,
+                      color: JColors.name,
                       fontSize: 20
                   ),
                   textAlign: TextAlign.start,
@@ -170,11 +165,14 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
     static Widget cardFront(double screenWidth){
 
       double cardWidth;
-      if( screenWidth < 355 ){
-        cardWidth = 335;
-      } else {
-        cardWidth = screenWidth - 40;
-      }
+//      if( screenWidth < 355 ){
+////        cardWidth = 335;
+////      } else if ( 355 < screenWidth && screenWidth < 600 ) {
+////        cardWidth = screenWidth - 40;
+////      } else {
+////        cardWidth = 355;
+////      }
+      cardWidth = 355;
 
       return Container(
         width: cardWidth,
@@ -204,7 +202,7 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                   Text(
                     'Javier Chauvin',
                     textAlign: TextAlign.start,
-                    style: GoogleFonts.notoSans(
+                    style: GoogleFonts.playfairDisplaySc(
                       color: JColors.card,
                       fontSize: 40,
                     ),
@@ -212,13 +210,15 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                   Expanded(child: Container()),
                 ],
               ),
+
+              Expanded(child: Container()),
               Row(
                 children: [
                   Text(
                     'Tech enthusiast',
                     style: GoogleFonts.robotoMono(
                         color: JColors.secondBlue,
-                        fontSize: 16
+                        fontSize: 18
                     ),
                     textAlign: TextAlign.right,
                   ),
@@ -230,9 +230,9 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                   Expanded(child: Container()),
                   Text(
                     'Product Owner',
-                    style: GoogleFonts.robotoMono(
+                    style: GoogleFonts.permanentMarker(
                         color: JColors.secondBlue,
-                        fontSize: 16
+                        fontSize: 18
                     ),
                     textAlign: TextAlign.right,
                   ),
@@ -244,25 +244,76 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                   Expanded(child: Container()),
                   Text(
                     'Lifelong learner',
-                    style: GoogleFonts.robotoMono(
+                    style: GoogleFonts.mrDafoe(
                         color: JColors.secondBlue,
-                        fontSize: 16
+                        fontSize: 22
                     ),
                     textAlign: TextAlign.center,
                   ),
                 ],
               ),
               Expanded(child: Container()),
-              Row(
-                children: [
-                  Expanded(child: Container()),
-                  _contact(JColors.card),
-                ],
-              ),
             ],
           ),
         ),
       );
+    }
+
+    Widget _downloadCV(){
+      return
+        Row(
+            children: [
+              Expanded(child: Container()),
+              Padding(
+                padding: const EdgeInsets.only(right: 5),
+                child: Text(
+                  'Download my',
+                  style: GoogleFonts.robotoMono(
+                      color: Colors.black45,
+                      fontSize: 16
+                  ),
+                ),
+              ),
+
+              GestureDetector(
+                onTap: (){
+                  IsPage.openCV("https://firebasestorage.googleapis.com/v0/b/"
+                      "javierchauvin-camo.appspot.com/o/personal_files%2FJavierChauvin_EN_CV.pdf?"
+                      "alt=media&token=7258996f-8524-4c22-877b-d96d43ea235d");
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: JColors.secondBlue,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'resume',
+                          style: GoogleFonts.robotoMono(
+                              color: Color.fromARGB(255, 238, 238, 238),
+                              fontSize: 16
+                          ),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          Icons.download_rounded,
+                          color: Color.fromARGB(255, 238, 238, 238),
+                          size: 16,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(child: Container()),
+            ]
+        );
     }
 
     @override
@@ -333,60 +384,17 @@ class IsPageSmallScreenState extends State<IsPageSmallScreen>
                           ),
 
                           Row(
-                              children: [
-                                Expanded(child: Container()),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 5),
-                                  child: Text(
-                                    'Download my',
-                                    style: GoogleFonts.robotoMono(
-                                        color: Colors.black45,
-                                        fontSize: 16
-                                    ),
-                                  ),
-                                ),
-
-                                GestureDetector(
-                                  onTap: (){
-                                    IsPage.openCV("https://firebasestorage.googleapis.com/v0/b/"
-                                        "javierchauvin-camo.appspot.com/o/personal_files%2FJavierChauvin_EN_CV.pdf?"
-                                        "alt=media&token=7258996f-8524-4c22-877b-d96d43ea235d");
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: JColors.secondBlue,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            'resume',
-                                            style: GoogleFonts.robotoMono(
-                                                color: Color.fromARGB(255, 238, 238, 238),
-                                                fontSize: 16
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Icon(
-                                            Icons.download_rounded,
-                                            color: Color.fromARGB(255, 238, 238, 238),
-                                            size: 16,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(child: Container()),
-                              ]
+                            children: [
+                              Expanded(child: Container()),
+                              Opacity(
+                                  opacity: 0.3,
+                                  child: _contact(JColors.secondBlue)
+                              ),
+                              Expanded(child: Container()),
+                            ],
                           ),
 
-                          SizedBox(height: 30,),
+                          SizedBox(height: 15,),
 
                         ],
                       ),

@@ -5,6 +5,7 @@ import 'package:javierchauvin/view/design/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Widget cardWithShadows({@required List<TextSpan> text}){
+
   return Padding(
     padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
     child: Container(

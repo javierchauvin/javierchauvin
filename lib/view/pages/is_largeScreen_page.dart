@@ -144,7 +144,7 @@ class IsPageLargeScreenState extends State<IsPageLargeScreen>
             Text(
               'Javier Chauvin',
               textAlign: TextAlign.start,
-              style: GoogleFonts.notoSans(
+              style: GoogleFonts.playfairDisplaySc(
                 color: JColors.card,
                 fontSize: 50,
               ),

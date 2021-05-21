@@ -29,7 +29,7 @@ class IsPageState extends State<IsPage> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ResponsiveLayout(
-        largeScreen: IsPageLargeScreen(),
+        largeScreen: IsPageSmallScreen(),
         smallScreen: IsPageSmallScreen(),
       ),
       //body: IsPageLargeScree(),
